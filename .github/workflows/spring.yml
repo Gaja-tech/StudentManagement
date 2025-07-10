@@ -5,11 +5,11 @@ on:
     branches: ["master"]
   pull_request: 
     branches: ["master"]
-    
+
 jobs:
   build:
     runs-on: windows-latest
-    
+
     steps:
       - name: Checkout source
         uses: actions/checkout@v3
@@ -25,5 +25,3 @@ jobs:
 
       - name: Run Tests
         run: mvn test
-          
-          
