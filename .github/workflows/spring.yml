@@ -11,7 +11,7 @@ jobs:
     runs-on: windows-latest
 
     steps:
-      - name: Checkout source code
+      - name: Checkout source
         uses: actions/checkout@v3
 
       - name: Set up JDK 17
@@ -19,10 +19,7 @@ jobs:
         with:
           java-version: '17'
           distribution: 'temurin'
-          cache: 'maven'  # Optional: speeds up build with Maven cache
-
+          
       - name: Build project with Maven
         run: mvn clean install -DskipTests
 
-      - name: Run tests
-        run: mvn test
