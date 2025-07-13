@@ -19,7 +19,7 @@ public class StudentController {
     @GetMapping("/form")
     public String showStudentForm(Model model) {
         model.addAttribute("student", new Student());
-        return "index"; 
+        return "pages/index"; 
     }
    
 
@@ -34,7 +34,7 @@ public class StudentController {
     public String listStudents(Model model) {
         List<Student> students = studentRepository.findAll();
         model.addAttribute("students", students);
-        return "student-list"; 
+        return "pages/student-list"; 
     }
     
     @GetMapping("/search")
@@ -42,7 +42,7 @@ public class StudentController {
         List<Student> students = studentRepository.findByNameContainingIgnoreCaseOrDepartmentContainingIgnoreCase(keyword, keyword);
         model.addAttribute("students", students);
         model.addAttribute("keyword", keyword); // optional, to retain keyword in input
-        return "student-list";
+        return "pages/student-list";
     }
 
     
@@ -51,7 +51,7 @@ public class StudentController {
         Student student = studentRepository.findById(id)
                 .orElseThrow(() -> new IllegalArgumentException("Invalid student Id: " + id));
         model.addAttribute("student", student);
-        return "student-edit"; // return student-edit.jsp
+        return "pages/student-edit"; // return student-edit.jsp
     }
 
     @PostMapping("/update/{id}")
@@ -68,7 +68,7 @@ public class StudentController {
         Student student = studentRepository.findById(id)
             .orElseThrow(() -> new RuntimeException("Student not found"));
         model.addAttribute("student", student);
-        return "student-delete";
+        return "pages/student-delete";
     }
 
     @PostMapping("/delete/{id}")
@@ -79,7 +79,7 @@ public class StudentController {
     
     @GetMapping("/login")
     public String showLoginForm() {
-        return "login"; // views/login.jsp
+        return "pages/login"; // views/login.jsp
     }
 
     @PostMapping("/doLogin")
@@ -90,7 +90,7 @@ public class StudentController {
             return "redirect:/students/form"; 
         } else {
             model.addAttribute("error", "Invalid username or password");
-            return "login";
+            return "pages/login";
         }
     }
 
